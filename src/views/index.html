@@ -8,36 +8,59 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <span>💬 ChatsRoo</span>
-        <span class="online-status">
-            <span class="green-dot"></span>
-            <span id="online-count">1</span>
-            <span id="online-label">user online</span>
-        </span>
+    <div class="animated-bg">
+        <div class="particle" style="left:10vw; width:60px; height:60px; animation-delay:0s;"></div>
+        <div class="particle" style="left:30vw; width:40px; height:40px; animation-delay:2s;"></div>
+        <div class="particle" style="left:60vw; width:80px; height:80px; animation-delay:4s;"></div>
+        <div class="particle" style="left:80vw; width:30px; height:30px; animation-delay:1s;"></div>
+        <div class="particle" style="left:50vw; width:100px; height:100px; animation-delay:3s;"></div>
+        <div class="particle" style="left:20vw; width:50px; height:50px; animation-delay:5s;"></div>
     </div>
-    <div id="login-popup">
-        <div class="login-dialog">
-            <h2>Welcome to ChatsRoo</h2>
-            <input id="login-username" maxlength="16" placeholder="Enter your name" autofocus />
-            <button id="login-btn">Join Chat</button>
+    <div class="header modern-header">
+        <div class="header-animated-bg"></div>
+        <div class="header-content">
+            <span class="header-logo">💬</span>
+            <span class="header-online">
+                <span class="green-dot"></span>
+                <span id="online-count">1</span>
+                <span id="online-label">user online</span>
+            </span>
+        </div>
+    </div>
+    <div id="login-popup" class="login-modal">
+        <div class="login-card">
+            <div class="login-avatar">
+                <span>👤</span>
+            </div>
+            <h2>Sign in to Chat</h2>
+            <p class="login-desc">Enter your username to join the conversation</p>
+            <input id="login-username" maxlength="16" placeholder="Username (max 16 chars)" autocomplete="off" />
+            <button id="login-btn">Start Chatting</button>
         </div>
     </div>
     <div id="chat-container" style="display:none;">
-        <header>
-            <button id="mute-btn" title="Mute music">🔊</button>
-            <span class="retro-title">RETRO CHAT ROOM</span>
-            <span class="online-dot"></span>
-            <span id="online-count" class="online-count">0</span>
-        </header>
-        <div id="messages"></div>
-        <div id="input-row">
-            <input type="text" id="message" placeholder="Type your message..." autocomplete="off" maxlength="200" />
-            <button id="send">SEND</button>
+        <div class="chat-glass">
+            <div class="chat-header-row">
+                <div class="chat-header-left">
+                    <button id="mute-btn" title="Mute music">🔊</button>
+                </div>
+                <div class="chat-header-center">
+                    <span class="chat-room-title">Modern Chat Room</span>
+                </div>
+                <div class="chat-header-right">
+                    <span class="online-dot"></span>
+                    <span id="online-count" class="online-count">0</span>
+                </div>
+            </div>
+            <div id="messages" class="messages-modern"></div>
+            <div id="input-row" class="input-row-modern">
+                <input type="text" id="message" placeholder="Type your message..." autocomplete="off" maxlength="200" />
+                <button id="send">Send</button>
+            </div>
+            <footer class="modern-footer">
+                <span>Powered by <span class="retro-title">Node.js</span> &amp; <span class="retro-title">Socket.IO</span></span>
+            </footer>
         </div>
-        <footer>
-            <span>Powered by <span class="retro-title">Node.js</span> &amp; <span class="retro-title">Socket.IO</span></span>
-        </footer>
     </div>
     <audio id="msg-sound" src="sounds/message.mp3" preload="auto"></audio>
     <audio id="bg-music" src="sounds/bg-music.mp3" preload="auto" loop></audio>

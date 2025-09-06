@@ -1,63 +1,272 @@
+
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
     min-height: 100vh;
+    min-width: 100vw;
     height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
-    background: repeating-linear-gradient(
-        135deg,
-        #101010 0px,
-        #101010 4px,
-        #181818 4px,
-        #181818 8px
-    );
     color: #00ff41;
     font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background with floating particles */
+.animated-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+    min-height: 100vh !important;
+    max-height: 100vh !important;
     box-sizing: border-box;
+}
+.chat-glass {
+    min-height: 80vh;
+    max-height: 90vh;
+    height: 80vh;
+    width: 100%;
+    max-width: 540px;
+    margin: 5vh auto 0 auto;
+}
+
+@media (max-width: 600px) {
+    .chat-glass {
+        min-height: 90vh;
+        max-height: 99vh;
+        height: 90vh;
+        margin: 0 auto 0 auto;
+        border-radius: 0;
+    }
+    .modern-header {
+        min-height: 60px;
+        height: 60px;
+    }
 }
 
 .retro-title {
     font-family: 'Press Start 2P', 'Fira Mono', monospace;
     color: #00ffe7;
     letter-spacing: 2px;
-    text-shadow: 0 0 8px #00ffe7, 0 0 2px #fff;
+    /* no glow */
 }
 
-/* Header styles */
-.header {
+
+/* Modern Animated Header */
+.modern-header {
+    position: relative;
+    width: 100vw;
+    min-height: 80px;
+    overflow: hidden;
+    z-index: 10;
+    margin-bottom: 0;
+}
+.header-animated-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #2ecc40 0%, #00ffe7 100%);
+    opacity: 0.13;
+    animation: headerMove 8s linear infinite alternate;
+    z-index: 1;
+}
+@keyframes headerMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+.header-content {
+    position: relative;
+    z-index: 2;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
-    background: #23272f;
-    color: #fff;
-    font-size: 1.2rem;
-    border-bottom: 2px solid #2c313a;
+    justify-content: space-between;
+    padding: 18px 32px 18px 32px;
 }
-
-.online-status {
+.header-logo {
+    font-size: 2.1rem;
+    margin-right: 16px;
+    /* no logo pop */
+}
+@keyframes logoPop {
+    0% { transform: scale(1) rotate(-8deg); }
+    100% { transform: scale(1.18) rotate(8deg); }
+}
+.header-title {
+    font-family: 'Press Start 2P', 'Fira Mono', monospace;
+    font-size: 1.5rem;
+    color: #2ecc40;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #2ecc4066, 0 0 2px #fff;
+    margin-right: 24px;
+    animation: titleGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 12px #2ecc4066, 0 0 2px #fff; }
+    100% { text-shadow: 0 0 32px #00ffe7, 0 0 8px #2ecc40; }
+}
+.header-online {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    color: #2ecc40;
+    font-family: 'Fira Mono', monospace;
 }
-
 .green-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: #2ecc40;
     border-radius: 50%;
     display: inline-block;
     margin-right: 4px;
+    box-shadow: 0 0 8px #2ecc40;
+}
+
+/* Modern Chat Glassmorphism */
+.chat-glass {
+    background: rgba(30, 34, 40, 0.82);
+    border-radius: 18px;
+    box-shadow: 0 8px 40px #000a, 0 0 0 4px #2ecc40;
+    padding: 0 0 0 0;
+    margin: 32px auto 0 auto;
+    max-width: 520px;
+    width: 98vw;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid #2ecc40;
+    backdrop-filter: blur(8px);
+}
+.chat-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(44, 62, 80, 0.92);
+    padding: 18px 24px 12px 24px;
+    border-bottom: 2px solid #2ecc40;
+}
+.chat-header-left, .chat-header-center, .chat-header-right {
+    display: flex;
+    align-items: center;
+}
+.chat-header-center {
+    flex: 1;
+    justify-content: center;
+}
+.chat-room-title {
+    font-family: 'Press Start 2P', 'Fira Mono', monospace;
+    color: #00ffe7;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    /* no glow */
+}
+.messages-modern {
+    flex: 1;
+    padding: 24px 18px 12px 18px;
+    overflow-y: auto;
+    background: transparent;
+    font-size: 1.08rem;
+    color: #eafaf1;
+    font-family: 'Fira Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.messages-modern .user {
+    color: #2ecc40;
+    font-weight: bold;
+    margin-right: 6px;
+}
+.input-row-modern {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px 16px 18px;
+    background: rgba(44, 62, 80, 0.92);
+    border-top: 2px solid #2ecc40;
+    gap: 10px;
+}
+#message {
+    background: #23272f;
+    border: 2px solid #2ecc40;
+    color: #2ecc40;
+    font-family: inherit;
+    font-size: 1.08rem;
+    padding: 10px;
+    border-radius: 7px;
+    outline: none;
+    flex: 1;
+    transition: border 0.2s;
+    box-shadow: 0 0 8px #2ecc4033 inset;
+}
+#message:focus {
+    border: 2px solid #00ffe7;
+}
+#send {
+    background: linear-gradient(90deg, #2ecc40 60%, #27ae60 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 32px;
+    font-size: 1.08rem;
+    font-family: 'Fira Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #2ecc4033;
+    letter-spacing: 1px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#send:hover, #send:focus {
+    background: linear-gradient(90deg, #27ae60 60%, #2ecc40 100%);
+    box-shadow: 0 4px 16px #2ecc4066;
+    outline: none;
+}
+.modern-footer {
+    background: rgba(44, 62, 80, 0.92);
+    border-top: 2px solid #2ecc40;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.98rem;
+    color: #2ecc40;
+    font-family: 'Fira Mono', monospace;
+    border-radius: 0 0 18px 18px;
+}
+@media (max-width: 600px) {
+    .modern-header .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 10px 12px 10px;
+    }
+    .chat-glass {
+        max-width: 99vw;
+        margin: 10px auto 0 auto;
+        border-radius: 0;
+    }
+    .chat-header-row {
+        padding: 12px 8px 8px 8px;
+    }
+    .input-row-modern {
+        padding: 10px 8px 10px 8px;
+    }
+    .messages-modern {
+        padding: 12px 6px 8px 6px;
+    }
 }
 
 header {
@@ -93,7 +302,7 @@ header {
     margin-left: 2px;
     min-width: 18px;
     display: inline-block;
-    text-shadow: 0 0 4px #00ff41;
+    /* no glow */
 }
 
 #chat-container {
@@ -168,19 +377,114 @@ header {
     outline: none;
 }
 
-#login-btn {
-    background: #2ecc40;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 28px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
+
+/* Redesigned Login Modal */
+.login-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20, 24, 32, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-#login-btn:hover {
-    background: #27ae38;
+.login-card {
+    background: #23272f;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px #000a, 0 0 0 4px #2ecc40;
+    padding: 40px 32px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    max-width: 90vw;
+    animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.login-avatar {
+    background: linear-gradient(135deg, #2ecc40 60%, #27ae60 100%);
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 2.5rem;
+    color: #fff;
+    box-shadow: 0 2px 12px #2ecc4066;
+}
+
+.login-card h2 {
+    margin: 0 0 8px 0;
+    color: #2ecc40;
+    font-family: 'Fira Mono', monospace;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    /* no glow */
+}
+
+.login-desc {
+    color: #b2becd;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+#login-username {
+    background: #181b20;
+    border: 2px solid #2ecc40;
+    color: #2ecc40;
+    font-family: 'Fira Mono', 'Consolas', 'Monaco', monospace;
+    font-size: 1.05rem;
+    padding: 12px;
+    border-radius: 7px;
+    outline: none;
+    margin-bottom: 20px;
+    width: 210px;
+    text-align: center;
+    box-shadow: 0 0 8px #2ecc4033 inset;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+#login-username:focus {
+    border: 2px solid #27ae60;
+    box-shadow: 0 0 12px #2ecc4066;
+}
+
+#login-btn {
+    background: linear-gradient(90deg, #2ecc40 60%, #27ae60 100%);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 36px;
+    font-size: 1.08rem;
+    font-family: 'Fira Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #2ecc4033;
+    letter-spacing: 1px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#login-btn:hover, #login-btn:focus {
+    background: linear-gradient(90deg, #27ae60 60%, #2ecc40 100%);
+    box-shadow: 0 4px 16px #2ecc4066;
+    outline: none;
+}
+
+@media (max-width: 500px) {
+    .login-card {
+        min-width: 90vw;
+        padding: 24px 8vw 20px 8vw;
+    }
+    #login-username {
+        width: 100%;
+    }
 }
 
 footer {
