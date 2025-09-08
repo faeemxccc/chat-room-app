@@ -4,13 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Chat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --primary-light: #FFD93D;
+            --bg: #232946;
+            --surface: #121629;
+            --text: #eaeaea;
+            --text-light: #b8c1ec;
+            --accent: #3DDC97;
+            --shadow: rgba(35, 41, 70, 0.12);
+        }
+        [data-theme="dark"] {
+            --primary: #FFD93D;
+            --primary-light: #FF6B6B;
+            --bg: #121629;
+            --surface: #232946;
+            --text: #eaeaea;
+            --text-light: #b8c1ec;
+            --accent: #3DDC97;
+            --shadow: rgba(35, 41, 70, 0.18);
+        }
+    </style>
     <style>
         body {
             background: linear-gradient(120deg, var(--bg) 0%, var(--surface) 100%);
             min-height: 100vh;
-            font-family: 'Inter', 'Poppins', sans-serif;
+            font-family: 'Space Grotesk', 'Inter', 'Poppins', sans-serif;
         }
         .footer-love {
             text-align: center;
