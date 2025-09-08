@@ -157,18 +157,34 @@
             Built with a focus on simplicity, speed, and a beautiful user experience.
         </div>
     </section>
-    <div class="footer-love" style="color:#e25555;">Made with ❤️ by the Modern Chat Team</div>
+    <!-- Floating Menu Button -->
+    <button id="floating-menu-btn" style="position:fixed;bottom:24px;right:24px;z-index:2000;background:var(--primary);color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 16px var(--shadow);font-size:2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;">
+        ☰
+    </button>
+    <!-- Floating Menu Dialog -->
+    <div id="floating-menu-dialog" style="display:none;position:fixed;bottom:90px;right:24px;z-index:2100;background:var(--surface);border-radius:16px;box-shadow:0 4px 32px var(--shadow);min-width:180px;padding:18px 0;overflow:hidden;">
+        <a href="home.html" style="display:block;padding:14px 28px;color:var(--primary);text-decoration:none;font-weight:500;font-size:1.1rem;">Home</a>
+        <a href="#about" style="display:block;padding:14px 28px;color:var(--primary);text-decoration:none;font-weight:500;font-size:1.1rem;">About Us</a>
+        <a href="index.html" style="display:block;padding:14px 28px;color:var(--primary);text-decoration:none;font-weight:500;font-size:1.1rem;">Start Chat</a>
+        <button id="close-menu-dialog" style="margin:10px auto 0 auto;display:block;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:1rem;cursor:pointer;">Close</button>
+    </div>
     <script>
-    // Menu dropdown logic
-    const menuBtn = document.getElementById('menu-btn');
-    const menuContent = document.getElementById('menu-content');
-    if(menuBtn && menuContent) {
-        menuBtn.onclick = function(e) {
+    // Floating menu logic
+    const floatingMenuBtn = document.getElementById('floating-menu-btn');
+    const floatingMenuDialog = document.getElementById('floating-menu-dialog');
+    const closeMenuDialog = document.getElementById('close-menu-dialog');
+    if(floatingMenuBtn && floatingMenuDialog) {
+        floatingMenuBtn.onclick = function(e) {
             e.stopPropagation();
-            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+            floatingMenuDialog.style.display = floatingMenuDialog.style.display === 'block' ? 'none' : 'block';
         };
-        document.addEventListener('click', function() {
-            menuContent.style.display = 'none';
+        if(closeMenuDialog) closeMenuDialog.onclick = function() {
+            floatingMenuDialog.style.display = 'none';
+        };
+        document.addEventListener('click', function(e) {
+            if (!floatingMenuDialog.contains(e.target) && e.target !== floatingMenuBtn) {
+                floatingMenuDialog.style.display = 'none';
+            }
         });
     }
     // Dark mode logic

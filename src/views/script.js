@@ -27,7 +27,7 @@ let isDarkMode = localStorage.getItem('darkMode') !== 'false'; // default to dar
 // Message handling
 function appendMessage({ user, text, avatar }) {
     const div = document.createElement('div');
-    div.className = `message ${user === currentUser ? 'sent' : 'received'}`;
+        div.className = `message ${user === currentUser ? 'sent' : 'received'} message-pop`;
     div.innerHTML = `
         <div class="username">
             <img src="${avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed=1'}" width="24" height="24" style="border-radius:50%;vertical-align:middle;margin-right:6px;">${user === currentUser ? 'You' : user}
@@ -35,20 +35,22 @@ function appendMessage({ user, text, avatar }) {
         <div class="text">${text}</div>
     `;
     messages.appendChild(div);
-    
-    // Smooth scroll to bottom
-    const shouldScroll = messages.scrollTop + messages.clientHeight >= messages.scrollHeight - 100;
-    if (shouldScroll) {
-        div.style.opacity = '0';
-        div.style.transform = 'translateY(20px)';
-        div.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            div.style.opacity = '1';
-            div.style.transform = 'translateY(0)';
-            messages.scrollTop = messages.scrollHeight;
-        }, 50);
-    }
+    scrollMessagesToBottom();
+        // Remove pop class after animation so it can be re-added for future messages
+        setTimeout(() => div.classList.remove('message-pop'), 400);
 }
+
+function scrollMessagesToBottom() {
+    // Use requestAnimationFrame for smoothness and to ensure DOM is updated
+    requestAnimationFrame(() => {
+        messages.scrollTop = messages.scrollHeight;
+    });
+}
+
+// On page load, scroll to bottom if there are messages
+window.addEventListener('DOMContentLoaded', () => {
+    scrollMessagesToBottom();
+});
 
 // Avatar selection logic
 avatarPics.forEach(img => {
@@ -123,12 +125,15 @@ loginBtn.onclick = () => {
 };
 
 // Message sending
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 function sendMessage() {
     const text = messageInput.value.trim().substring(0, 200);
     if (!text) return;
     socket.emit('chat message', { user: currentUser, text, avatar: getAvatarUrl() });
     messageInput.value = '';
-    messageInput.focus();
+    if (!isMobile()) messageInput.focus();
 }
 
 sendBtn.onclick = sendMessage;

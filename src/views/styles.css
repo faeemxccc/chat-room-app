@@ -1,3 +1,21 @@
+ .message-pop {
+     animation: popIn 0.35s cubic-bezier(.23,1.12,.62,1.01);
+ }
+ 
+ @keyframes popIn {
+     0% {
+         opacity: 0;
+         transform: scale(0.85) translateY(30px);
+     }
+     60% {
+         opacity: 1;
+         transform: scale(1.05) translateY(-6px);
+     }
+     100% {
+         opacity: 1;
+         transform: scale(1) translateY(0);
+     }
+ }
 :root {
     --primary: #7C5DFA;
     --primary-light: #9277FF;
@@ -234,6 +252,8 @@ button, input {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    justify-content: flex-end;
+    min-height: 0;
 }
 
 .message {
@@ -383,19 +403,20 @@ button, input {
     .login-container {
         padding: 0.5rem;
     }
-    
     .login-card {
         padding: 1.5rem;
     }
-    
     .chat-area {
         padding: 0.5rem;
     }
-    
-    .message {
-        max-width: 90%;
+    .messages-container {
+        padding: 0.5rem;
+        gap: 0.7rem;
+        font-size: 1.02rem;
     }
-    
+    .message {
+        max-width: 95%;
+    }
     .composer {
         margin-top: 0.5rem;
         padding: 0.75rem;
