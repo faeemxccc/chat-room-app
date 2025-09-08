@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Chat - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, var(--bg) 0%, var(--surface) 100%);
+            min-height: 100vh;
+            font-family: 'Inter', 'Poppins', sans-serif;
+            margin: 0;
+        }
+        .hero {
+            max-width: 700px;
+            margin: 80px auto 0 auto;
+            background: var(--surface);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px var(--shadow);
+            padding: 48px 36px 36px 36px;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.7rem;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+        .hero-btns {
+            margin-top: 32px;
+        }
+        .hero-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 10px;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .hero-btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+        .about-section {
+            max-width: 700px;
+            margin: 48px auto 0 auto;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px var(--shadow);
+            padding: 36px 32px 28px 32px;
+            text-align: center;
+        }
+        .about-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .about-text {
+            font-size: 1.08rem;
+            color: var(--text-light);
+            margin-bottom: 18px;
+        }
+        .footer-love {
+            text-align: center;
+            margin: 56px 0 18px 0;
+            color: #e25555;
+            font-size: 1.15rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 700px) {
+            .hero, .about-section {
+                padding: 24px 8px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .about-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header" style="background:var(--surface);padding:0;box-shadow:0 2px 12px var(--shadow);">
+        <div class="header-content" style="display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto;padding:0.7rem 1.5rem;">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <span style="font-size:2rem;">💬</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:600;color:var(--text);letter-spacing:1px;">Modern Chat</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <div class="menu-dropdown" style="position:relative;display:inline-block;">
+                    <button class="icon-btn" id="menu-btn" title="Menu" style="font-size:1.3rem;background:none;border:none;color:var(--text);">☰</button>
+                    <div id="menu-content" style="display:none;position:absolute;right:0;top:36px;background:var(--surface);border-radius:8px;box-shadow:0 2px 12px var(--shadow);min-width:140px;z-index:100;">
+                        <a href="home.html" style="display:block;padding:12px 18px;color:var(--primary);text-decoration:none;font-weight:500;">Home</a>
+                        <a href="#about" style="display:block;padding:12px 18px;color:var(--primary);text-decoration:none;font-weight:500;">About Us</a>
+                        <a href="index.html" style="display:block;padding:12px 18px;color:var(--primary);text-decoration:none;font-weight:500;">Start Chat</a>
+                    </div>
+                </div>
+                <button id="theme-btn" class="icon-btn" title="Toggle theme" style="font-size:1.2rem;background:none;border:none;color:var(--text);">🌙</button>
+            </div>
+        </div>
+    </header>
+    <section class="hero" style="background:var(--surface);color:var(--text);">
+        <h1 class="hero-title">Welcome to Modern Chat</h1>
+        <div class="hero-desc">
+            Real-time chat for everyone.<br>
+            Connect, share, and enjoy seamless conversations in public or private rooms.<br>
+            Fast, simple, and beautiful.
+        </div>
+        <div class="hero-btns">
+            <a href="index.html"><button class="hero-btn">Start Chatting</button></a>
+            <a href="#about"><button class="hero-btn" style="background:#fff;color:#4f8cff;border:1.5px solid #4f8cff;">Learn More</button></a>
+        </div>
+    </section>
+    <section class="about-section" id="about" style="background:var(--surface);color:var(--text);">
+        <h2 class="about-title">About Modern Chat</h2>
+        <div class="about-text">
+            Modern Chat is a real-time chat application designed for seamless and fun conversations.<br>
+            Connect, share, and enjoy chatting with friends or new people in public and private rooms.<br>
+            Built with a focus on simplicity, speed, and a beautiful user experience.
+        </div>
+    </section>
+    <div class="footer-love" style="color:#e25555;">Made with ❤️ by the Modern Chat Team</div>
+    <script>
+    // Menu dropdown logic
+    const menuBtn = document.getElementById('menu-btn');
+    const menuContent = document.getElementById('menu-content');
+    if(menuBtn && menuContent) {
+        menuBtn.onclick = function(e) {
+            e.stopPropagation();
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        };
+        document.addEventListener('click', function() {
+            menuContent.style.display = 'none';
+        });
+    }
+    // Dark mode logic
+    let isDarkMode = localStorage.getItem('darkMode') !== 'false'; // default true
+    function setTheme(dark) {
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        const themeBtn = document.getElementById('theme-btn');
+        if(themeBtn) themeBtn.textContent = dark ? '🌙' : '☀️';
+        localStorage.setItem('darkMode', dark);
+        isDarkMode = dark;
+    }
+    setTheme(isDarkMode);
+    const themeBtn = document.getElementById('theme-btn');
+    if(themeBtn) themeBtn.onclick = () => setTheme(!isDarkMode);
+    </script>
+</body>
+</html>

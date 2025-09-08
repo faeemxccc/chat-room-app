@@ -7,6 +7,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+
+// Serve home.html as the landing page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/views/home.html'));
+});
+
+// Serve other static files (css, js, etc.)
 app.use(express.static(path.join(__dirname, 'src/views')));
 
 let onlineCount = 0;

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Modern Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, var(--bg) 0%, var(--surface) 100%);
+            color: var(--text);
+            font-family: 'Inter', 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .app-header {
+            background: var(--surface);
+            box-shadow: 0 2px 12px var(--shadow);
+            padding: 0;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0.7rem 1.5rem;
+        }
+        .header-content .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-content .logo span {
+            font-size: 2rem;
+        }
+        .header-content .logo .brand {
+            font-family: 'Poppins',sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+        .menu-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+        .icon-btn:hover {
+            background: var(--bg);
+        }
+        #menu-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 36px;
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px var(--shadow);
+            min-width: 140px;
+            z-index: 100;
+        }
+        #menu-content a {
+            display: block;
+            padding: 12px 18px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        #menu-content a:hover {
+            background: var(--bg);
+        }
+        .about-container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px var(--shadow);
+            padding: 40px 32px 32px 32px;
+            text-align: center;
+        }
+        .about-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+        .love {
+            color: #e25555;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <span>💬</span>
+                <span class="brand">Modern Chat</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <div class="menu-dropdown">
+                    <button class="icon-btn" id="menu-btn" title="Menu">☰</button>
+                    <div id="menu-content">
+                        <a href="home.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="index.html">Start Chat</a>
+                    </div>
+                </div>
+                <button id="theme-btn" class="icon-btn" title="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </header>
+    <div class="about-container">
+        <h1 class="about-title">About Modern Chat</h1>
+        <p class="about-text">
+            Modern Chat is a real-time chat application designed for seamless and fun conversations.<br>
+            Connect, share, and enjoy chatting with friends or new people in public and private rooms.<br>
+            Built with a focus on simplicity, speed, and a beautiful user experience.
+        </p>
+        <div class="love">Made with ❤️ by the Modern Chat Team</div>
+        <a href="home.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+    // Menu dropdown logic
+    const menuBtn = document.getElementById('menu-btn');
+    const menuContent = document.getElementById('menu-content');
+    if(menuBtn && menuContent) {
+        menuBtn.onclick = function(e) {
+            e.stopPropagation();
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        };
+        document.addEventListener('click', function() {
+            menuContent.style.display = 'none';
+        });
+    }
+    // Dark mode logic
+    let isDarkMode = localStorage.getItem('darkMode') !== 'false'; // default true
+    function setTheme(dark) {
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        const themeBtn = document.getElementById('theme-btn');
+        if(themeBtn) themeBtn.textContent = dark ? '🌙' : '☀️';
+        localStorage.setItem('darkMode', dark);
+        isDarkMode = dark;
+    }
+    setTheme(isDarkMode);
+    const themeBtn = document.getElementById('theme-btn');
+    if(themeBtn) themeBtn.onclick = () => setTheme(!isDarkMode);
+    </script>
+</body>
+</html>

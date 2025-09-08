@@ -6,8 +6,24 @@
     <title>Modern Chat</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, var(--bg) 0%, var(--surface) 100%);
+            min-height: 100vh;
+            font-family: 'Inter', 'Poppins', sans-serif;
+        }
+        .footer-love {
+            text-align: center;
+            margin: 48px 0 16px 0;
+            color: #e25555;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Removed top navbar -->
     <div id="login-popup" class="login-overlay">
         <div class="login-container">
             <div class="login-card">
@@ -50,6 +66,13 @@
                         <span class="pulse-dot"></span>
                         <span id="online-count">1</span> online
                     </div>
+                    <div class="menu-dropdown" style="position:relative;display:inline-block;">
+                        <button class="icon-btn" id="menu-btn" title="Menu" style="font-size:1.3rem;">☰</button>
+                        <div id="menu-content" style="display:none;position:absolute;right:0;top:36px;background:var(--surface);border-radius:8px;box-shadow:0 2px 12px var(--shadow);min-width:140px;z-index:100;">
+                            <a href="home.html" style="display:block;padding:12px 18px;color:var(--primary);text-decoration:none;font-weight:500;">Home</a>
+                            <a href="about.html" style="display:block;padding:12px 18px;color:var(--primary);text-decoration:none;font-weight:500;">About Us</a>
+                        </div>
+                    </div>
                     <button id="theme-btn" class="icon-btn" title="Toggle theme">☀️</button>
                     <button id="mute-btn" class="icon-btn" title="Toggle sound">🔊</button>
                 </div>
@@ -73,7 +96,22 @@
     
     <audio id="msg-sound" src="sounds/message.mp3" preload="auto"></audio>
     <audio id="bg-music" src="sounds/bg-music.mp3" preload="auto" loop></audio>
+    <div class="footer-love">Made with ❤️ by the Modern Chat Team</div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
+    <script>
+    // Simple dropdown menu logic
+    const menuBtn = document.getElementById('menu-btn');
+    const menuContent = document.getElementById('menu-content');
+    if(menuBtn && menuContent) {
+        menuBtn.onclick = function(e) {
+            e.stopPropagation();
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        };
+        document.addEventListener('click', function() {
+            menuContent.style.display = 'none';
+        });
+    }
+    </script>
 </body>
 </html>

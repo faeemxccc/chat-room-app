@@ -22,7 +22,7 @@ const joinPrivateBtn = document.getElementById('join-private-btn');
 
 let currentUser = '';
 let isMuted = false;
-let isDarkMode = localStorage.getItem('darkMode') === 'true';
+let isDarkMode = localStorage.getItem('darkMode') !== 'false'; // default to dark
 
 // Message handling
 function appendMessage({ user, text, avatar }) {
@@ -168,16 +168,16 @@ muteBtn.onclick = () => {
 // Theme handling
 function setTheme(dark) {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    themeBtn.textContent = dark ? '🌙' : '☀️';
+    if(themeBtn) themeBtn.textContent = dark ? '🌙' : '☀️';
     localStorage.setItem('darkMode', dark);
     isDarkMode = dark;
 }
 
-// Initialize theme
+// Initialize theme (default dark)
 setTheme(isDarkMode);
 
 // Theme toggle
-themeBtn.onclick = () => {
+if(themeBtn) themeBtn.onclick = () => {
     setTheme(!isDarkMode);
 };
 
