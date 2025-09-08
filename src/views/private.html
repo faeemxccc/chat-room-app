@@ -3,59 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Chat</title>
+    <title>Private Chat</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="login-popup" class="login-overlay">
+    <div id="private-popup" class="login-overlay" style="display:none;">
         <div class="login-container">
             <div class="login-card">
                 <div class="login-header">
-                    <span class="welcome-emoji">👋</span>
-                    <h1>Welcome!</h1>
-                    <p>Join the conversation</p>
+                    <span class="welcome-emoji">🔒</span>
+                    <h1>Private Chat Created!</h1>
+                    <p>Copy and share this code to invite others:</p>
                 </div>
-                <input id="login-username" type="text" maxlength="16" placeholder="Enter your username" />
-                <div id="avatar-select" style="margin: 16px 0;">
-                    <label style="display:block; margin-bottom:4px;">Choose your avatar:</label>
-                    <div style="display:flex; gap:8px; justify-content:center;">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=1" class="avatar-pic" data-avatar="1" width="40" height="40" style="border-radius:50%;cursor:pointer;border:2px solid #ccc;">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=2" class="avatar-pic" data-avatar="2" width="40" height="40" style="border-radius:50%;cursor:pointer;border:2px solid #ccc;">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=3" class="avatar-pic" data-avatar="3" width="40" height="40" style="border-radius:50%;cursor:pointer;border:2px solid #ccc;">
-                    </div>
+                <div style="margin: 16px 0;">
+                    <input id="private-room-code" type="text" readonly style="width:140px;text-align:center;font-size:1.2em;" />
+                    <button id="copy-code-btn" style="margin-left:8px;">Copy</button>
                 </div>
-                <button id="login-btn">Start Chatting</button>
-                <div style="margin-top:24px;">
-                    <button id="create-private-btn" type="button">Create Private Chat</button>
-                    <div id="private-code-container" style="display:none;margin-top:8px;">
-                        <span>Your code: <b id="private-code"></b></span>
-                    </div>
-                    <div style="margin-top:12px;">
-                        <input id="join-code-input" type="text" maxlength="12" placeholder="Enter code to join" style="width:120px;" />
-                        <button id="join-private-btn" type="button">Join</button>
-                    </div>
-                </div>
+                <button id="close-popup-btn">Close</button>
             </div>
         </div>
     </div>
-    
-    <!-- Main Chat Container -->
     <div id="chat-container" style="display:none; opacity: 0;">
         <header class="app-header">
             <div class="header-content">
-                <h1>Chat Room</h1>
+                <h1 id="chat-header-title">Private Chat</h1>
                 <div class="header-actions">
                     <div class="online-indicator">
                         <span class="pulse-dot"></span>
                         <span id="online-count">1</span> online
                     </div>
+                    <button id="copy-header-code-btn" class="icon-btn" title="Copy join code">🔗</button>
                     <button id="theme-btn" class="icon-btn" title="Toggle theme">☀️</button>
                     <button id="mute-btn" class="icon-btn" title="Toggle sound">🔊</button>
                 </div>
             </div>
         </header>
-
         <main class="chat-area">
             <div id="messages" class="messages-container"></div>
             <div class="composer">
@@ -70,10 +53,9 @@
             </div>
         </main>
     </div>
-    
     <audio id="msg-sound" src="sounds/message.mp3" preload="auto"></audio>
     <audio id="bg-music" src="sounds/bg-music.mp3" preload="auto" loop></audio>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+    <script src="private.js"></script>
 </body>
 </html>
