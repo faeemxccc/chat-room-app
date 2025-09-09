@@ -45,7 +45,7 @@ chat-room-app
 
 To start the application, run:
 ```
-node src/app.js
+node server.js
 ```
 Then, open your browser and go to `http://localhost:3000` to access the chat room.
 
